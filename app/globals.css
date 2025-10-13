@@ -149,3 +149,39 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Animaciones para el Hero (solo se ejecutan una vez) */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-animate {
+  animation: fadeInUp 0.8s ease forwards;
+  opacity: 0; /* fallback para navegadores sin soporte */
+}
+
+.hero-animate-delay-200 {
+  animation-delay: 200ms;
+}
+
+.hero-animate-delay-400 {
+  animation-delay: 400ms;
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-animate,
+  .hero-animate-delay-200,
+  .hero-animate-delay-400 {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

@@ -2,7 +2,6 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
-import { Suspense } from "react"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -16,21 +15,11 @@ export const metadata: Metadata = {
     "Organizá, descubrí y participá en eventos deportivos cerca tuyo. Plataforma para atletas y organizadores. Descargá gratis en App Store y Google Play.",
   generator: "D+ App",
   keywords: [
-    "eventos deportivos",
-    "organizador de torneos",
-    "comunidad deportiva",
-    "gestión de eventos",
-    "app deportiva",
-    "torneos deportivos",
-    "eventos cerca de mi",
-    "app para atletas",
-    "organizar competencias",
-    "inscripción deportiva",
-    "D+ app",
-    "deporte argentina",
-    "eventos deportivos latinoamérica",
-    "eventos deportivos buenos aires",
-    "torneos argentina",
+  "eventos deportivos Argentina",
+  "app para organizar torneos",
+  "plataforma deportiva D+",
+  "inscripción a eventos deportivos",
+  "comunidad deportiva"
   ],
   authors: [{ name: "D+ Team" }],
   creator: "D+",
@@ -56,7 +45,7 @@ export const metadata: Metadata = {
     siteName: "D+",
     images: [
       {
-        url: "/dynamic-sports-action-athletes-running-jumping.jpg",
+        url: "/dynamic-sports-action-athletes-running-jumping.webp",
         width: 1200,
         height: 630,
         alt: "D+ - Descubrí y participá en eventos deportivos en Argentina",
@@ -126,15 +115,15 @@ export default function RootLayout({
   return (
     <html lang="es" className={inter.variable}>
       <head>
-        <meta name="geo.region" content="AR" />
-        <meta name="geo.placename" content="Argentina" />
-        <meta name="ICBM" content="-34.603722, -58.381592" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" content="#FF6600" />
+        <meta name="geo.region" content="AR"/>
+        <meta name="geo.placename" content="Argentina"/>
+        <meta name="ICBM" content="-34.603722, -58.381592"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta name="theme-color" content="#FF6600"/>
         
-        <link rel="icon" type="image/png" sizes="32x32" href="/LogoD+.png" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/LogoD+.png" />
-        <link rel="manifest" href="/manifest.json" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/LogoD+.png"/>
+        <link rel="apple-touch-icon" sizes="180x180" href="/LogoD+.png"/>
+        <link rel="manifest" href="/manifest.json"/>
 
         {/* JSON-LD */}
         <script
@@ -151,7 +140,7 @@ export default function RootLayout({
         />
       </head>
       <body className="font-sans antialiased">
-        <Suspense fallback={null}>{children}</Suspense>
+        {children}
       </body>
     </html>
   )

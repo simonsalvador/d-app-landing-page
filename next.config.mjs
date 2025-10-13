@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  experimental: {
+    modernPreset: true, // ← elimina polyfills innecesarios
+  },
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -9,6 +12,7 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  swcMinify: true, // ← minifica JS con SWC 
   async headers() {
     return [
       {
