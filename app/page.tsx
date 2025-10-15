@@ -16,6 +16,7 @@ import {
 import Navbar from "@/components/navbar";
 import dynamic from "next/dynamic" 
 import Footer from "@/components/Footer";
+import OrganizerContactForm from "@/components/OrganizerContactForm"; 
 
 const TestimonialSection = dynamic(
   () => import('@/components/TestimonialSection'),
@@ -221,10 +222,14 @@ export default function LandingPage() {
                   </li>
                 ))}
               </ul>
+              {/*Formulario de contacto para organizadores */}
+              <div className="mt-8 pt-6 border-t border-border/30">
+                <OrganizerContactForm />
+              </div>
             </div>
             <div className="flex justify-center">
               <Image
-                src="/d-plus-mockup-organizador.png"
+                src="/d-plus-mockup-Organizador.webp"
                 alt="D+ App para Organizadores"
                 width={800}
                 height={600}
@@ -238,7 +243,7 @@ export default function LandingPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div className="flex justify-center lg:order-1">
               <Image
-                src="/d-plus-mockup-participantes.png"
+                src="/d-plus-mockup-Participantes.webp"
                 alt="D+ App para Participantes"
                 width={800}
                 height={600}
