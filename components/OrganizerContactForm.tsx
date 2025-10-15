@@ -10,7 +10,7 @@ export default function OrganizerContactForm() {
       </p>
 
       <form
-        action="https://formsubmit.co/tu@email.com" // ← ¡CAMBIA ESTO POR TU EMAIL!
+        action="https://formsubmit.co/soportedondemas@gmail.com" // 
         method="POST"
         className="space-y-4"
       >
