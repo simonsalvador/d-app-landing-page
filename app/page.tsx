@@ -197,8 +197,8 @@ export default function LandingPage() {
       {/* Benefits Section */}
       <section className="py-16 sm:py-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Organizadores */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-24">
+          {/* === Organizadores === */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-12">
             <div>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-balance">
                 Para <span className="text-primary">Organizadores</span>
@@ -222,11 +222,8 @@ export default function LandingPage() {
                   </li>
                 ))}
               </ul>
-              {/*Formulario de contacto para organizadores */}
-              <div className="mt-8 pt-6 border-t border-border/30">
-                <OrganizerContactForm />
-              </div>
             </div>
+
             <div className="flex justify-center">
               <Image
                 src="/d-plus-mockup-Organizador.webp"
@@ -239,8 +236,13 @@ export default function LandingPage() {
             </div>
           </div>
 
-          {/* Participantes */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* Formulario Organizador*/}
+          <div className="mt-12 flex justify-center">
+            <OrganizerContactForm />
+          </div>
+
+          {/* === Participantes === */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center mt-24">
             <div className="flex justify-center lg:order-1">
               <Image
                 src="/d-plus-mockup-Participantes.webp"
@@ -291,7 +293,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Testimonials Section - Diferido */}
+      {/* Testimonials Section */}
       <TestimonialSection />
 
       {/* FAQ Section */}
@@ -329,7 +331,7 @@ export default function LandingPage() {
               className="border-2 border-primary text-primary hover:bg-primary hover:text-white bg-transparent px-4 sm:px-6 py-4 sm:py-6 text-sm sm:text-base"
               asChild
             >
-              <Link href="mailto:soporte@dplus.com">
+              <Link href="mailto:soportedondemas@gmail.com">
                 <Mail className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                 <span className="hidden sm:inline">Contactá a nuestro equipo de soporte</span>
                 <span className="sm:hidden">Contactar soporte</span>

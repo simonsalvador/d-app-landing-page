@@ -10,24 +10,24 @@ import StatCounters from "./StatCounters";
 
 const testimonials = [
   {
-    name: "Sarah Martínez",
-    role: "Organizadora de Maratones",
-    avatar: "SM",
-    text: "D+ transformó cómo organizo eventos de running. El registro es fluido y las funciones de engagement son increíbles. Mi último maratón se agotó en 48 horas.",
+    name: "Lucía Fernández",
+    role: "Profesora de Zumba",
+    avatar: "LF",
+    text: "D+ me facilitó muchísimo la organización de mis clases. Ahora los alumnos pueden inscribirse y pagar desde la app, y yo tengo todo ordenado en un solo lugar. Es una herramienta muy práctica para quienes damos clases al aire libre o en distintos espacios.",
     rating: 5,
   },
   {
-      name: "James Chen",
-      role: "Director de Liga de Baloncesto",
-      text: "Gestionar nuestra liga comunitaria de baloncesto nunca ha sido tan fácil. Las herramientas de programación y las actualizaciones en tiempo real mantienen a todos informados. Un cambio de juego para deportes amateur.",
-      avatar: "JC",
+      name: "Martín Cabrera",
+      role: "Coordinador de Torneos de Pádel",
+      text: "Antes llevaba las inscripciones y los pagos por mensajes, y era un lío. Con D+ todo se volvió más simple: los jugadores se anotan online, reciben avisos y puedo gestionar cada torneo sin perder tiempo.",
+      avatar: "MC",
       rating: 5,
     },
     {
-      name: "Emily Rodríguez",
-      role: "Instructora de Yoga",
-      text: "Uso D+ para promocionar mis sesiones de yoga al aire libre. El descubrimiento basado en ubicación me ayuda a llegar a nuevos estudiantes, y el procesamiento de pagos es seguro y directo.",
-      avatar: "ER",
+      name: "Florencia Díaz",
+      role: "Entrenadora de Running Team",
+      text: "Uso D+ para comunicar los entrenamientos y organizar eventos del equipo. Me permite publicar las salidas, confirmar asistencia y mantener todo actualizado. Realmente optimiza la gestión del grupo.",
+      avatar: "FD",
       rating: 5,
     },
 ];
@@ -54,7 +54,7 @@ export default function TestimonialsSection() {
             Amado por la <span className="text-white">Comunidad</span>
           </h2>
           <p className="text-lg sm:text-xl text-white/90 max-w-3xl mx-auto">
-            Unite a miles de atletas y organizadores que confían en D+ para sus actividades deportivas.
+            Unite a miles de atletas, espectadores y organizadores que confían en D+ para sus actividades deportivas.
           </p>
         </div>
 

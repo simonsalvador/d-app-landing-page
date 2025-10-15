@@ -43,6 +43,22 @@ export default function OrganizerContactForm() {
         </div>
 
         <div>
+          <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-1">
+            Teléfono (opcional)
+          </label>
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            className="w-full px-3 py-2 border border-input rounded-md bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+            placeholder="Ej: +54 9 11 1234-5678"
+          />
+          <p className="text-xs text-muted-foreground mt-1">
+            *Tu número solo será usado para contactarte sobre tu evento. No lo compartimos ni usamos para spam.
+          </p>
+        </div>
+
+        <div>
           <label htmlFor="event-type" className="block text-sm font-medium text-foreground mb-1">
             ¿Qué tipo de evento organizás?
           </label>
@@ -57,7 +73,7 @@ export default function OrganizerContactForm() {
         </div>
 
         {/* Redirección tras envío */}
-        <input type="hidden" name="_redirect" value="https://donde-mas.com/gracias" />
+        <input type="hidden" name="_redirect" value="http://localhost:3000/gracias" />
         {/* Protección anti-spam */}
         <input type="hidden" name="_captcha" value="true" />
 
