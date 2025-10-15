@@ -9,6 +9,7 @@ export default function OrganizerContactForm() {
   const [error, setError] = useState("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    console.log("🚀 Enviando con fetch...");
     e.preventDefault();
     setIsSubmitting(true);
     setError("");
