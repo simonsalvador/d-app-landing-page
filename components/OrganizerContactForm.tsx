@@ -1,51 +1,5 @@
 // components/OrganizerContactForm.tsx
-"use client";
-
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-
 export default function OrganizerContactForm() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState("");
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    console.log("🚀 Enviando con fetch...");
-    e.preventDefault();
-    setIsSubmitting(true);
-    setError("");
-
-    const formData = new FormData(e.currentTarget);
-    // Limpiar espacios en el email
-    const email = formData.get("email")?.toString().trim() || "";
-    formData.set("email", email);
-    
-    // En Vercel, permitimos el captcha (es inevitable sin dominio verificado)
-    formData.set("_captcha", "true");
-    formData.set("_autoresponse", "false");
-
-    try {
-      const response = await fetch("https://formsubmit.co/soportedondemas@gmail.com", {
-        method: "POST",
-        body: formData,
-        headers: {
-          Accept: "application/json",
-        },
-      });
-
-      const result = await response.json();
-
-      if (result.success) {
-        window.location.href = "/gracias";
-      } else {
-        setError(result.message || "Hubo un error al enviar el formulario. Intentá nuevamente.");
-      }
-    } catch (err) {
-      setError("Error de conexión. Verificá tu internet e intentá de nuevo.");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
   return (
     <div className="bg-card rounded-xl p-6 border border-border shadow-sm max-w-2xl mx-auto">
       <h3 className="text-xl font-bold text-foreground mb-2">
@@ -55,7 +9,11 @@ export default function OrganizerContactForm() {
         Contanos sobre tu evento y te contactamos para ayudarte a publicarlo en D+.
       </p>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form
+        action="https://formsubmit.co/soportedondemas@gmail.com" // 
+        method="POST"
+        className="space-y-4"
+      >
         <div>
           <label htmlFor="name" className="block text-sm font-medium text-foreground mb-1">
             Nombre completo
@@ -114,17 +72,17 @@ export default function OrganizerContactForm() {
           />
         </div>
 
-        {error && (
-          <p className="text-sm text-destructive">{error}</p>
-        )}
+        {/* Redirección tras envío */}
+        <input type="hidden" name="_redirect" value="https://d-app-landing-page.vercel.app/gracias" />
+        {/* Protección anti-spam */}
+        <input type="hidden" name="_captcha" value="true" />
 
-        <Button
+        <button
           type="submit"
-          disabled={isSubmitting}
           className="w-full bg-primary text-primary-foreground font-medium py-2.5 px-4 rounded-md hover:bg-primary/90 transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
         >
-          {isSubmitting ? "Enviando..." : "Enviar solicitud"}
-        </Button>
+          Enviar solicitud
+        </button>
       </form>
     </div>
   );
