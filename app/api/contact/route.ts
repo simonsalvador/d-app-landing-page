@@ -22,17 +22,7 @@ export async function POST(request: NextRequest) {
 
     if (dbError) throw dbError;
 
-    // 2. Enviar email con Resend (usando sandbox)
-    const emailHtml = `
-      <h2>📩 Nuevo lead de organizador en D+</h2>
-      <p><strong>Nombre:</strong> ${name}</p>
-      <p><strong>Email:</strong> ${email}</p>
-      <p><strong>Teléfono:</strong> ${phone || 'No indicado'}</p>
-      <p><strong>Tipo de evento:</strong> ${eventType}</p>
-      <hr>
-      <p><em>Este mensaje fue generado automáticamente desde tu landing D+.</em></p>
-    `;
-
+    // 2. Enviar email con Resend (usando fetch)
     const emailRes = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
@@ -40,22 +30,24 @@ export async function POST(request: NextRequest) {
         'Authorization': `Bearer ${process.env.RESEND_API_KEY}`,
       },
       body: JSON.stringify({
-        from: 'D+ <onboarding@resend.dev>', // ✅ Sandbox verificado por Resend
+        from: 'onboarding@resend.dev',
         to: 'soportedondemas@gmail.com',
-        subject: `Nuevo organizador: ${name} quiere publicar un evento`,
-        html: emailHtml,
+        subject: `Nuevo organizador: ${name}`,
+        html: `<p><strong>Nombre:</strong> ${name}<br><strong>Email:</strong> ${email}<br><strong>Teléfono:</strong> ${phone || 'No indicado'}<br><strong>Evento:</strong> ${eventType}</p>`,
       }),
     });
 
+    const result = await emailRes.json();
     if (!emailRes.ok) {
-      const errorText = await emailRes.text();
-      console.error('Error al enviar email:', errorText);
+      console.error('❌ Error de Resend:', result);
+    } else {
+      console.log('✅ Email enviado:', result.id);
     }
 
     return NextResponse.json({ success: true });
   } catch (error: unknown) {
-    const errorMessage = error instanceof Error ? error.message : 'Error interno';
-    console.error('Error en /api/contact:', errorMessage);
+    const errorMessage = error instanceof Error ? error.message : 'Error desconocido';
+    console.error('💥 Error:', errorMessage);
     return NextResponse.json({ error: errorMessage }, { status: 500 });
   }
 }
