@@ -22,8 +22,9 @@ export async function POST(request: NextRequest) {
     if (error) throw error;
 // ✅ Solo devuelve éxito, sin redirección
     return NextResponse.json({ success: true });
-  } catch (error) {
-    console.error('Error en /api/contact:', error);
-    return NextResponse.json({ error: 'Error interno del servidor' }, { status: 500 });
+  } catch (error: unknown) {
+  const errorMessage = error instanceof Error ? error.message : 'Error desconocido';
+  console.error('Error real:', errorMessage);
+  return NextResponse.json({ error: errorMessage }, { status: 500 });
   }
 }
