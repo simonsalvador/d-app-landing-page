@@ -1,6 +1,7 @@
+// app/gracias/page.tsx
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Mail } from "lucide-react";
+import { Mail, Phone } from "lucide-react";
 
 export default function GraciasPage() {
   return (
@@ -31,10 +32,16 @@ export default function GraciasPage() {
           Hemos recibido tu solicitud. En breve, un miembro de nuestro equipo se pondrá en contacto contigo para ayudarte a publicar tu evento en D+.
         </p>
 
-        <div className="bg-muted/30 rounded-lg p-4 mb-8">
+        <div className="bg-muted/30 rounded-lg p-4 mb-6">
           <p className="text-sm text-muted-foreground flex items-start gap-2">
-            <Mail className="w-4 h-4 mt-0.5 flex-shrink-0" />
-            ¿No recibiste respuesta en 24 horas? Escríbenos directamente a{" "}
+            <Phone className="w-4 h-4 mt-0.5 flex-shrink-0" />
+            Si nos dejaste tu número de WhatsApp, ¡te escribiremos por ahí!
+          </p>
+          <p className="text-sm text-muted-foreground mt-3">
+            ¿No recibiste respuesta en 24 horas? Escríbenos directamente a:
+          </p>
+          <p className="text-sm text-muted-foreground mt-1 flex items-center justify-center gap-1.5">
+            <Mail className="w-3.5 h-3.5 text-primary" />
             <a
               href="mailto:soportedondemas@gmail.com"
               className="text-primary hover:underline font-medium"
