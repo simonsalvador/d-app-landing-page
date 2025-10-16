@@ -20,13 +20,8 @@ export async function POST(request: NextRequest) {
       .insert({ name, email, phone, event_type: eventType });
 
     if (error) throw error;
-// ✅ Redirección segura con 303 See Other
-    return new NextResponse(null, {
-      status: 303,
-      headers: {
-        Location: 'https://d-app-landing-page.vercel.app/gracias',
-      },
-    });
+// ✅ Solo devuelve éxito, sin redirección
+    return NextResponse.json({ success: true });
   } catch (error) {
     console.error('Error en /api/contact:', error);
     return NextResponse.json({ error: 'Error interno del servidor' }, { status: 500 });

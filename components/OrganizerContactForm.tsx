@@ -18,21 +18,32 @@ export default function OrganizerContactForm() {
     const phone = formData.get("phone")?.toString().trim() || "";
     const eventType = formData.get("eventType")?.toString().trim() || "";
 
+    // Validación básica en el frontend
+    if (!name || !email || !eventType) {
+      setError("Por favor, completá todos los campos obligatorios.");
+      setIsSubmitting(false);
+      return;
+    }
+
     try {
-      const res = await fetch("/api/contact", {
+      const response = await fetch("/api/contact", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({ name, email, phone, eventType }),
       });
 
-      if (res.ok) {
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        // ✅ Redirección desde el frontend
         window.location.href = "/gracias";
       } else {
-        const data = await res.json();
-        setError(data.error || "Hubo un error. Intentá nuevamente.");
+        setError(data.error || "Hubo un error al enviar el formulario. Intentá nuevamente.");
       }
     } catch {
-      setError("Error de conexión. Verificá tu internet.");
+      setError("Error de conexión. Verificá tu internet e intentá de nuevo.");
     } finally {
       setIsSubmitting(false);
     }
@@ -106,7 +117,9 @@ export default function OrganizerContactForm() {
           />
         </div>
 
-        {error && <p className="text-sm text-destructive">{error}</p>}
+        {error && (
+          <p className="text-sm text-destructive">{error}</p>
+        )}
 
         <button
           type="submit"
