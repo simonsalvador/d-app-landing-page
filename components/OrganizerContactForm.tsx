@@ -18,7 +18,6 @@ export default function OrganizerContactForm() {
     const phone = formData.get("phone")?.toString().trim() || "";
     const eventType = formData.get("eventType")?.toString().trim() || "";
 
-    // Validación básica en el frontend
     if (!name || !email || !eventType) {
       setError("Por favor, completá todos los campos obligatorios.");
       setIsSubmitting(false);
@@ -37,10 +36,12 @@ export default function OrganizerContactForm() {
       const data = await response.json();
 
       if (response.ok && data.success) {
-        // ✅ Redirección desde el frontend
-        window.location.href = "/gracias";
+        // ✅ Solución definitiva al error 405
+        setTimeout(() => {
+          window.location.replace("/gracias");
+        }, 100);
       } else {
-        setError(data.error || "Hubo un error al enviar el formulario. Intentá nuevamente.");
+        setError(data.error || "Hubo un error. Intentá nuevamente.");
       }
     } catch {
       setError("Error de conexión. Verificá tu internet e intentá de nuevo.");
