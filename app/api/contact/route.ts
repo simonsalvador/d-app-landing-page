@@ -1,35 +1,29 @@
 // app/api/contact/route.ts
+import { createClient } from '@supabase/supabase-js';
 import { NextRequest, NextResponse } from 'next/server';
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.SUPABASE_SERVICE_ROLE_KEY!
+);
 
 export async function POST(request: NextRequest) {
   try {
-    const formData = await request.formData();
-    
-    // Limpiar espacios en el email (opcional pero recomendado)
-    const email = formData.get('email')?.toString().trim() || '';
-    formData.set('email', email);
+    const { name, email, phone, eventType } = await request.json();
 
-    // Configurar FormSubmit
-    formData.append('_captcha', 'false');
-    formData.append('_autoresponse', 'false');
-
-    const response = await fetch('https://formsubmit.co/soportedondemas@gmail.com', {
-      method: 'POST',
-      body: formData,
-      headers: {
-        Accept: 'application/json',
-      },
-    });
-
-    if (response.ok) {
-      return NextResponse.redirect(new URL('/gracias', request.url));
-    } else {
-      const errorText = await response.text();
-      console.error("FormSubmit error:", errorText);
-      return NextResponse.json({ error: 'No se pudo enviar el formulario' }, { status: 500 });
+    if (!name || !email || !eventType) {
+      return NextResponse.json({ error: 'Faltan campos requeridos' }, { status: 400 });
     }
+
+    const { error } = await supabase
+      .from('organizer_leads')
+      .insert({ name, email, phone, event_type: eventType });
+
+    if (error) throw error;
+
+    return NextResponse.redirect(new URL('/gracias', request.url));
   } catch (error) {
-    console.error("Error en /api/contact:", error);
+    console.error('Error en /api/contact:', error);
     return NextResponse.json({ error: 'Error interno del servidor' }, { status: 500 });
   }
 }

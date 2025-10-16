@@ -2,7 +2,6 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
 
 export default function OrganizerContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -14,23 +13,26 @@ export default function OrganizerContactForm() {
     setError("");
 
     const formData = new FormData(e.currentTarget);
+    const name = formData.get("name")?.toString().trim() || "";
     const email = formData.get("email")?.toString().trim() || "";
-    formData.set("email", email);
+    const phone = formData.get("phone")?.toString().trim() || "";
+    const eventType = formData.get("eventType")?.toString().trim() || "";
 
     try {
-      const response = await fetch("/api/contact", {
+      const res = await fetch("/api/contact", {
         method: "POST",
-        body: formData,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, phone, eventType }),
       });
 
-      if (response.ok) {
+      if (res.ok) {
         window.location.href = "/gracias";
       } else {
-        const data = await response.json();
-        setError(data.error || "Hubo un error al enviar el formulario. Intentá nuevamente.");
+        const data = await res.json();
+        setError(data.error || "Hubo un error. Intentá nuevamente.");
       }
     } catch {
-        setError("Error de conexión. Verificá tu internet e intentá de nuevo.");
+      setError("Error de conexión. Verificá tu internet.");
     } finally {
       setIsSubmitting(false);
     }
@@ -104,17 +106,15 @@ export default function OrganizerContactForm() {
           />
         </div>
 
-        {error && (
-          <p className="text-sm text-destructive">{error}</p>
-        )}
+        {error && <p className="text-sm text-destructive">{error}</p>}
 
-        <Button
+        <button
           type="submit"
           disabled={isSubmitting}
           className="w-full bg-primary text-primary-foreground font-medium py-2.5 px-4 rounded-md hover:bg-primary/90 transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
         >
           {isSubmitting ? "Enviando..." : "Enviar solicitud"}
-        </Button>
+        </button>
       </form>
     </div>
   );
