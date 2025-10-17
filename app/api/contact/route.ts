@@ -22,31 +22,36 @@ export async function POST(request: NextRequest) {
 
     if (dbError) throw dbError;
 
-    // 2. Enviar email con Resend (usando fetch)
-    const emailRes = await fetch('https://api.resend.com/emails', {
+    // 2. Enviar email con Brevo
+    const emailRes = await fetch('https://api.brevo.com/v3/smtp/email', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.RESEND_API_KEY}`,
+        'Accept': 'application/json',
+        'api-key': process.env.BREVO_API_KEY!,
       },
       body: JSON.stringify({
-        from: 'onboarding@resend.dev',
-        to: 'soportedondemas@gmail.com',
+        sender: { email: 'soportedondemas@gmail.com', name: 'D+ Leads' },
+        to: [{ email: 'soportedondemas@gmail.com' }],
         subject: `Nuevo organizador: ${name}`,
-        html: `<p><strong>Nombre:</strong> ${name}<br><strong>Email:</strong> ${email}<br><strong>Teléfono:</strong> ${phone || 'No indicado'}<br><strong>Evento:</strong> ${eventType}</p>`,
+        htmlContent: `
+          <h2>📩 Nuevo lead en D+</h2>
+          <p><strong>Nombre:</strong> ${name}</p>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Teléfono:</strong> ${phone || 'No indicado'}</p>
+          <p><strong>Tipo de evento:</strong> ${eventType}</p>
+        `,
       }),
     });
 
-    const result = await emailRes.json();
     if (!emailRes.ok) {
-      console.error('❌ Error de Resend:', result);
-    } else {
-      console.log('✅ Email enviado:', result.id);
+      const errorText = await emailRes.text();
+      console.error('❌ Error Brevo:', errorText);
     }
 
     return NextResponse.json({ success: true });
   } catch (error: unknown) {
-    const errorMessage = error instanceof Error ? error.message : 'Error desconocido';
+    const errorMessage = error instanceof Error ? error.message : 'Error interno';
     console.error('💥 Error:', errorMessage);
     return NextResponse.json({ error: errorMessage }, { status: 500 });
   }
