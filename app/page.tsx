@@ -236,10 +236,10 @@ export default function LandingPage() {
             </div>
           </div>
 
-          {/* Formulario Organizador*/}
+          {/* Formulario Organizador
           <div className="mt-12 flex justify-center">
             <OrganizerContactForm />
-          </div>
+          </div> */}
 
           {/* === Participantes === */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center mt-24">
@@ -338,6 +338,21 @@ export default function LandingPage() {
               </Link>
             </Button>
           </div>
+        </div>
+      </section>
+
+      {/* Formulario para Organizadores */}
+      <section className="py-12 sm:py-16 bg-muted/10">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+          <div className="text-center mb-8">
+            <h3 className="text-2xl font-bold text-foreground">
+              ¿Sos organizador de eventos deportivos?
+            </h3>
+            <p className="text-muted-foreground mt-2">
+              Publicá tu torneo en D+ en minutos y llegá a miles de atletas.
+            </p>
+          </div>
+          <OrganizerContactForm />
         </div>
       </section>
 
