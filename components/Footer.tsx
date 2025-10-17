@@ -43,12 +43,12 @@ export default function Footer() {
               <h4 className="font-semibold mb-4">Empresa</h4>
               <ul className="space-y-2">
                 <li>
-                  <Link href="https://www.instagram.com/dplusapp?igsh=YmNnOTM0MXNiZzd1" className="text-muted-foreground hover:text-primary transition-colors">
+                  <Link href="https://www.instagram.com/dplusapp?igsh=YmNnOTM0MXNiZzd1" className="text-muted-foreground hover:text-primary transition-colors" target="_blank" rel="noopener noreferrer">
                     Sobre Nosotros
                   </Link>
                 </li>
                  <li>
-                  <Link href="mailto:soportedondemas@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">
+                  <Link href="mailto:soportedondemas@gmail.com" className="text-muted-foreground hover:text-primary transition-colors" target="_blank" rel="noopener noreferrer">
                     Contacto
                   </Link>
                 </li>

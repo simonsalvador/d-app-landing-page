@@ -226,7 +226,7 @@ export default function LandingPage() {
 
             <div className="flex justify-center">
               <Image
-                src="/d-plus-mockup-Organizador.webp"
+                src="/d-plus-mockup-OrganizadorLast.webp"
                 alt="D+ App para Organizadores"
                 width={800}
                 height={600}
@@ -236,16 +236,11 @@ export default function LandingPage() {
             </div>
           </div>
 
-          {/* Formulario Organizador
-          <div className="mt-12 flex justify-center">
-            <OrganizerContactForm />
-          </div> */}
-
           {/* === Participantes === */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center mt-24">
             <div className="flex justify-center lg:order-1">
               <Image
-                src="/d-plus-mockup-Participantes.webp"
+                src="/d-plus-mockup-ParticipanteLast.webp"
                 alt="D+ App para Participantes"
                 width={800}
                 height={600}
